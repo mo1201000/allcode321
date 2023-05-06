@@ -1,0 +1,16 @@
+friends=[1, "codezilla","mostafs", True,False,[1,"ismohamed"]]
+print(friends)
+print(friends[1])
+print(friends[-3])
+print(friends[3:5])
+print(friends[3:6])
+friends[0]="mostafs"
+print(friends[0])
+codezilla= ["programming","python","tutorial","html"]
+tutorial= ["extend", "lsist","codezilla"]
+codezilla.extend(tutorial)
+codezilla.append(tutorial)
+print(codezilla)
+codezilla.insert(0,"mostafa")
+print(codezilla)
+

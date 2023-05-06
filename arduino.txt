@@ -1,0 +1,354 @@
+
+#include <PS4Controller.h>
+
+
+//declare the pin off frist motor
+int MotorAdir1=5;
+int MotorAdir2=6;
+int MotorPwm1=7;
+
+//declare the pin off Second motor
+int MotorBdir1=8;
+int MotorBdir2=9;
+int MotorPwm2=10;
+
+//declare the pin off thrid motor
+int MotorCdir1=11;
+int MotorCdir2=12;
+int MotorPwm3=13;
+
+//declare the pin off four  motor
+int MotorDdir1=14;
+int MotorDdir2=15;
+int MotorPwm4=16;
+
+//declare the pin off Five motor
+int MotorEdir1=17;
+int MotorEdir2=18;
+int MotorPwm5=19;
+
+//declare the pin off six motor
+int MotorFdri1=20;
+int MotorFdir2=21;
+int MotorPwm6=22;
+
+#//declare the pin off VII motor
+int MotorGdri1=23;
+int MotorGdir2=24;
+int MotorPwm7=25;
+
+//declare the pin off  8 motor
+int MotorZdri1=26;
+int MotorZdir2=27;
+int MotorPwm8=28;
+r1=pwm(Motorpwm6,OUTPUT)
+
+void setupPinsMode() {
+  
+//define pins
+  pinMode(MotorAdir1, OUTPUT);
+  pinMode(MotorAdir2, OUTPUT);
+  pinMode(MotorPwm1, OUTPUT);
+ 
+
+  pinMode(MotorBdir1, OUTPUT);
+  pinMode(MotorBdir2, OUTPUT);
+  pinMode(MotorPwm2, OUTPUT);
+
+  pinMode(MotorCdir1, OUTPUT);
+  pinMode(MotorCdir2, OUTPUT);
+  pinMode(MotorPwm3, OUTPUT);
+
+  pinMode(MotorDdir1, OUTPUT);
+  pinMode(MotorDdir2, OUTPUT);
+  pinMode(MotorPwm4, OUTPUT);
+
+  pinMode(MotorEdir1, OUTPUT);
+  pinMode(MotorEdir2, OUTPUT);
+  pinMode(MotorPwm5, OUTPUT);
+
+  pinMode(MotorFdir1, OUTPUT);
+  pinMode(MotorFdir2, OUTPUT);
+  pinMode(MotorPwm6, OUTPUT);
+
+  pinMode(MotorGdir1, OUTPUT);
+  pinMode(MotorGdir2, OUTPUT);
+  pinMode(MotorPwm7, OUTPUT);
+
+  pinMode(MotorZdir1, OUTPUT);
+  pinMode(MotorZdir1, OUTPUT);
+  pinMode(MotorPwm8, OUTPUT);
+ 
+
+
+
+}
+
+
+void notify()
+{
+  int YvertMotor , Yvert1Motor,xHorzMotor ;
+  YvertMotor = map( PS4.RStickY(),-127, 1 27, -255, 255); //Left stick  - y axis - up/down  motor movement
+  Yvert1Motor = map( PS4.LStickY(), -127, 127, -255, 255);  //Right stick - y axis - forward/backward  motor movement
+  xHorzMotor = map( PS4.LStickX(), -127, 127, -255, 255);  //Right stick -X axis  Right/left  motor movement
+
+  YvertMotor = constrain(YvertMotorSpeed, -255, 255);
+  Yvert1Motor = constrain(Yvert1MotorSpeed, -255, 255);
+  xHorzMotor = constrain(xHorzMotorSpeed, -255, 255);
+  
+  Serial.println(YvertMotor );
+  Serial.println(Yvert1Motor);
+  Serial.println(xHorzMotor);  
+  rotateMotor( YvertMotor , Yvert1Motor,xHorzMotor );
+}
+
+void onConnect()
+{
+  Serial.println("Connected!.");
+}
+
+void onDisConnect()
+{
+  rotateMotor(0, 0);
+  Serial.println("Disconnected!.");    
+}
+void rotateMotor(int rightMotorSpeed, int leftMotorSpeed)
+{
+  if (YvertMotor< 0)
+  {
+    Serial.println(Forward );
+    digitalWrite(MotorAdir1,LOW);
+    digitalWrite(MotorAdir2,HIGH);
+
+    digitalWrite(MotorBdir1,LOW);
+    digitalWrite(MotorBdir2,HIGH); 
+
+    digitalWrite(MotorCdir1,LOW);
+    digitalWrite(MotorCdir2,HIGH); 
+
+    digitalWrite(MotorDdir1,LOW);
+    digitalWrite(MotorDdir2,HIGH); 
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM1, speed); // control the speed 
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM2, speed); 
+    
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM3, speed); 
+    
+    for (int speed = 0; speed <= 255; speed++) {
+     analogWrite(PWM4, speed); 
+
+
+
+  }
+  else if(YvertMotor> 0)
+  {
+    Serial.println(Backward );
+    digitalWrite(MotorAdir1,HIGH);
+    digitalWrite(MotorAdir2,LOW);
+
+    digitalWrite(MotorBdir1,HIGH);
+    digitalWrite(MotorBdir2,LOW);
+
+    digitalWrite(MotorCdir1,HIGH);
+    digitalWrite(MotorCdir2,LOW); 
+
+    digitalWrite(MotorDdir1,HIGH);
+    digitalWrite(MotorDdir1,LOW);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM1, speed); 
+  
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM2, speed);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM3, speed);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM4, speed);  
+  }
+
+   else
+  {
+    digitalWrite(MotorAdir1,LOW);
+    digitalWrite(MotorAdir2,LOW);
+
+    digitalWrite(MotorBdir1,LOW);
+    digitalWrite(MotorBdir2,LOW);
+
+    digitalWrite(MotorBdir1,LOW);
+    digitalWrite(MotorBdir2,LOW);
+
+    digitalWrite(MotorDdir1,LOW);
+    digitalWrite(MotorDdir2,LOW);
+
+
+  }
+
+   if (Yvert1Motor< 0)
+  {
+    Serial.println(UP );
+    digitalWrite(MotorFdir1,LOW);
+    digitalWrite(MotorFdir2,HIGH);
+
+    digitalWrite(MotorFdir1,LOW);
+    digitalWrite(MotorFdir2,HIGH); 
+
+    digitalWrite(MotorGdir1,LOW);
+    digitalWrite(MotorGdir2,HIGH); 
+
+    digitalWrite(MotorZdir1,LOW);
+    digitalWrite(MotorZdir2,HIGH); 
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM5, speed); // control the speed 
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM6, speed); 
+    
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM7, speed); 
+    
+    for (int speed = 0; speed <= 255; speed++) {
+     analogWrite(PWM8, speed); 
+
+
+
+  }
+  else if(YvertMotor> 0)
+  {
+    Serial.println(Down );
+    digitalWrite(MotorEdir1,HIGH);
+    digitalWrite(MotorEdir2,LOW);
+
+    digitalWrite(MotorFdir1,HIGH);
+    digitalWrite(MotorFdir2,LOW);
+
+    digitalWrite(MotorGdir1,HIGH);
+    digitalWrite(MotorGdir2,LOW); 
+
+    digitalWrite(MotorZdir1,HIGH);
+    digitalWrite(MotorZdir1,LOW);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM5, speed); 
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM6, speed);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM7, speed);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM8, speed);  
+  }
+
+  else
+  {
+    digitalWrite(MotorEdir1,LOW);
+    digitalWrite(MotorEdir2,LOW);
+
+    digitalWrite(MotorFdir1,LOW);
+    digitalWrite(MotorFdir2,LOW);
+
+    digitalWrite(MotorGdir1,LOW);
+    digitalWrite(MotorGdir2,LOW);
+
+    digitalWrite(MotorZdir1,LOW);
+    digitalWrite(MotorZdir2,LOW);
+
+
+  }
+
+  if(xhorzMotor> 0)
+  {
+    Serial.println(Right);
+    digitalWrite(MotorAdir1,LOW);
+    digitalWrite(MotorAdir2,HIGH);
+
+    digitalWrite(MotorBdir1,LOW);
+    digitalWrite(MotorBdir2,HIGH);
+
+    digitalWrite(MotorCdir1,HIGH);
+    digitalWrite(MotorCdir2,LOW); 
+
+    digitalWrite(MotorDdir1,HIGH);
+    digitalWrite(MotorDdir1,LOW);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM1, speed); 
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM2, speed);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM3, speed);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM4, speed);  
+  }
+  else if (xhorzMotor< 0)
+  {
+    digitalWrite(MotorAdir1,HIGH);
+    digitalWrite(MotorAdir2,LOW);
+
+    digitalWrite(MotorBdir1,HIGH);
+    digitalWrite(MotorBdir2,LOW);
+
+    digitalWrite(MotorCdir1,LOW);
+    digitalWrite(MotorCdir2,HIGH); 
+
+    digitalWrite(MotorDdir1,LOW);
+    digitalWrite(MotorDdir2,HIGH); 
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM1, speed); 
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM2, speed);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM3, speed);
+
+    for (int speed = 0; speed <= 255; speed++) {
+      analogWrite(PWM4, speed);  
+  }
+
+  else
+  {
+    digitalWrite(MotorAdir1,LOW);
+    digitalWrite(MotorAdir2,LOW);
+
+    digitalWrite(MotorBdir1,LOW);
+    digitalWrite(MotorBdir2,LOW);
+
+    digitalWrite(MotorCdir1,LOW);
+    digitalWrite(MotorCdir2,LOW);
+
+    digitalWrite(MotorDdir1,LOW);
+    digitalWrite(MotorDdir2,LOW);
+
+
+  }
+}
+
+  
+void setup()
+{
+  setUpPinModes();
+  Serial.begin(115200);
+  PS4.attach(notify);
+  PS4.attachOnConnect(onConnect);
+  PS4.attachOnDisconnect(onDisConnect);
+  PS4.begin();
+  Serial.println("Ready.");
+}
+
+void loop()
+{
+}

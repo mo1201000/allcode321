@@ -1,0 +1,38 @@
+character_name ="shawky"
+age="60"
+print("there was aboy caled" + character_name)
+print("he was" +age+ "years old")
+print("he is\n ahmed")
+print("he is\t mostfa")
+text="codezilla"
+print(text)
+print(text.lower())
+print(text.upper())
+print(text.lower().islower())
+print(len(text))
+print(text.index('d'))
+text="code zilla"
+print(text.replace("code","mode"))
+my_name=-60
+print(str(my_name)+"my favrite number")
+print(pow(2,5))
+print(max(3,5))
+print(min(5,6))
+print(round(3.9))
+print(abs(my_name))
+name=input("enter your name")
+print("hello"+name)
+num1=input("enter your frist number")
+num2=input("entre your second number")
+num3=input("entre your thrid number")
+result1=int(num1)+int(num2)-int(num3)
+result2=int(num1)*int(num2)/int(num3)
+print(result1)
+print(result2)
+coior=input("enter use color")
+plura=input("enter use plura")
+adjective=input("entre use an adjective")
+print("tress are"+coior)
+print(plura+"are mean")
+print("please keep it"+adjective)
+
